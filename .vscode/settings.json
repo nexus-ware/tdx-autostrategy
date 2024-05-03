@@ -1,6 +1,9 @@
 {
     "robloxLsp.diagnostics.globals": [
         "request",
-        "messagebox"
+        "messagebox",
+        "dofile",
+        "writefile",
+        "isfile"
     ]
 }

@@ -8,20 +8,7 @@ This project is in development. Be sure to check back later for more information
 
 ## Installation
 
-Please see `sync.bat` and change the:
-
-```sh
-set "destination=DIRECTORY"
-```
-
-to the destination of your executor's `workspace` folder.
-
-After changing this variable, run the script using `.\sync.bat`
-
-### Running
-
-After installing the needed files, find a strategy you would like to run.
-Then, please put your file into your executor's `autoexec` folder.
+Install the strategy you would like in your executor's `autoexec` folder.
 
 ## Contributing
 
