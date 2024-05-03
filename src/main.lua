@@ -1,12 +1,12 @@
 local FILE_VERSION = "0.0.1"
-local BETA = false
-local BASE_URL = if BETA then "https://raw.githubusercontent.com/nexus-ware/tdx-autostrategy/master/" else "https://raw.githubusercontent.com/nexus-ware/tdx-autostrategy/dev"
+local BASE_URL =
+    "https://raw.githubusercontent.com/nexus-ware/tdx-autostrategy/master/"
 
 ---@description - Checks if the version of the script is outdated.
 ---@return boolean
 function checkIfOutdated()
     local remoteVersionResponse = request({
-        Url = BASE_URL.."version.txt",
+        Url = BASE_URL .. "version.txt",
         Method = "GET"
     })
 
@@ -29,22 +29,19 @@ function checkIfOutdated()
 end
 
 ---@description Sends a request to get a file.
-function getFile(file) 
-    local response = request({
-        Url = BASE_URL..file,
-        Method = "GET"
-    })
+function getFile(file)
+    local response = request({Url = BASE_URL .. file, Method = "GET"})
 
     return response.Body
 
 end
 
---#region Imports
+-- #region Imports
 local sendRequest = loadstring(getFile('util/send-request.lua'))()
 local orchestrator = loadstring(getFile('modules/orchestrator.lua'))()
 local remotes = loadstring(getFile('enums/remotes.lua'))()
 local tower = loadstring(getFile('modules/tower.lua'))()
+-- #endregion
 
-
-
---#endregion
+---@see
+return {}
