@@ -40,6 +40,8 @@ local remotes = loadstring(getFile('enums/remotes.lua'))()
 local tower = loadstring(getFile('modules/tower.lua'))()
 local clientInterfaceBindings = loadstring(getFile(
                                                'enums/client-interface-bindings.lua'))()
+local signals = loadstring(getFile('modules/signals.lua'))()
+
 -- #endregion
 
 -- #region Constants
@@ -53,5 +55,8 @@ getgenv().__ORCHESTRATOR = orchestrator
 getgenv().__REMOTES = remotes
 getgenv().__UTILS = {SEND_REQUEST = sendRequest}
 getgenv().__CLIENT_INTERFACE = clientInterfaceBindings
+getgenv().__SIGNALS = signals
 
 -- #endregion
+
+return {Tower = tower}
