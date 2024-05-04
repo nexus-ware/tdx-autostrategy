@@ -4,6 +4,7 @@
         "messagebox",
         "dofile",
         "writefile",
-        "isfile"
+        "isfile",
+        "getgenv"
     ]
 }

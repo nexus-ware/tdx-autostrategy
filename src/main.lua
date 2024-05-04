@@ -18,9 +18,6 @@ function checkIfOutdated()
 
     if tonumber(remoteVersion) and tonumber(localVersion) then
         if tonumber(remoteVersion) > tonumber(FILE_VERSION) then
-            messagebox(
-                "Nexus Ware\n Your version of TDX Autostrategy is out of date.",
-                "Out of Date", bit32.bor(MB_ICON_INFO, MB_OK))
             return true
         else
             return false
@@ -41,7 +38,20 @@ local sendRequest = loadstring(getFile('util/send-request.lua'))()
 local orchestrator = loadstring(getFile('modules/orchestrator.lua'))()
 local remotes = loadstring(getFile('enums/remotes.lua'))()
 local tower = loadstring(getFile('modules/tower.lua'))()
+local clientInterfaceBindings = loadstring(getFile(
+                                               'enums/client-interface-bindings.lua'))()
 -- #endregion
 
----@see
-return {}
+-- #region Constants
+
+-- Define all globally used variables.
+
+getgenv().__IS_LOBBY = game.PlaceId ~= 11739766412
+
+getgenv().__IS_LOADED = false
+getgenv().__ORCHESTRATOR = orchestrator
+getgenv().__REMOTES = remotes
+getgenv().__UTILS = {SEND_REQUEST = sendRequest}
+getgenv().__CLIENT_INTERFACE = clientInterfaceBindings
+
+-- #endregion

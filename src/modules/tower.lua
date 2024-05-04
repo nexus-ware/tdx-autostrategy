@@ -1,27 +1,16 @@
 local Players = game:GetService('Players')
 
----@description Takes in an optional callback which is called when the cash threshold is reached.
----@param cash number
-local function yieldUntilCashThreshold(cash, callback)
-    ---@type NumberValue
-    local CashValue = Players.LocalPlayer:WaitForChild('leaderstats')
-                          :WaitForChild('Cash')
-
-    repeat task.wait() until CashValue.Value >= cash
-    if callback then callback() end
-end
-
 local Tower = {}
 Tower.__index = Tower
 
-Tower.new = function(name, position, orchestrator, remotes)
+Tower.new = function(name, position)
 
     local newTower = {
         Name = name,
         Position = position,
-        Orchestrator = orchestrator,
-        Remotes = remotes,
-        Index = orchestrator.getNextTowerIndex()
+        Orchestrator = getgenv().__ORCHESTRATOR,
+        Remotes = getgenv().__REMOTES,
+        Index = getgenv().__ORCHESTRATOR.getNextTowerIndex()
     }
 
     setmetatable(newTower, Tower)
