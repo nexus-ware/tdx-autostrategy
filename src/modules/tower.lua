@@ -10,6 +10,7 @@ Tower.new = function(name, position)
         Position = position,
         Orchestrator = getgenv().__ORCHESTRATOR,
         Remotes = getgenv().__REMOTES,
+        Signals = getgenv().__SIGNALS,
         Index = getgenv().__ORCHESTRATOR.getNextTowerIndex()
     }
 
@@ -24,7 +25,7 @@ end
 ---`🔺yields🔺`
 function Tower:Place(requiredCash)
 
-    yieldUntilCashThreshold(requiredCash, function()
+    self.Signals.WaitForCash(requiredCash, function()
         self.Remotes.Tower.Place:InvokeServer(unpack({
             0, self.Name, self.Position, 0
         }))
@@ -39,7 +40,7 @@ end
 ---@param requiredCash number
 ---`🔺yields🔺`
 function Tower:Upgrade(path, requiredCash)
-    yieldUntilCashThreshold(requiredCash, function()
+    self.Signals.WaitForCash(requiredCash, function()
         self.Remotes.Tower.Upgrade:FireServer(unpack({self.Index, path}))
         local nextIndex = self.Orchestrator.getNextTowerIndex()
         self.Orchestrator.setNextTowerIndex(nextIndex)
