@@ -29,7 +29,7 @@ Signals.WaitForEnemyAdded = function(enemyName, callback)
     ---@type Folder
     local Enemies = workspace:WaitForChild('Enemies')
 
-    Enemies.ChildAdded:Connect(function(child)
+    Enemies.ChildAdded:Once(function(child)
         if child.Name == enemyName then
             if callback then callback(child) end
         end
@@ -63,7 +63,7 @@ Signals.WaitForWaveChange = function(callback)
     ---@type TextLabel
     local Wave = getgenv().__CLIENT_INTERFACE.GameInfoBar.Wave
 
-    Wave:GetPropertyChangedSignal('Text'):Connect(callback)
+    Wave:GetPropertyChangedSignal('Text'):Once(callback)
 end
 
 ---Yields a callback until the current time equals the desired time.
@@ -79,7 +79,7 @@ Signals.WaitForTimeRemaining = function(time, callback)
 
     local desiredTime = time:gsub("[:]", "")
 
-    Time:GetPropertyChangedSignal('Text'):Connect(function()
+    Time:GetPropertyChangedSignal('Text'):Once(function()
         local text = Time.Text
         local filteredText = text:gsub("[:]", "")
 
