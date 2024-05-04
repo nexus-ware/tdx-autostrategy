@@ -41,6 +41,7 @@ local tower = loadstring(getFile('modules/tower.lua'))()
 local clientInterfaceBindings = loadstring(getFile(
                                                'enums/client-interface-bindings.lua'))()
 local signals = loadstring(getFile('modules/signals.lua'))()
+local lobby = loadstring(getFile('modules/lobby.lua'))()
 
 -- #endregion
 
@@ -48,15 +49,17 @@ local signals = loadstring(getFile('modules/signals.lua'))()
 
 -- Define all globally used variables.
 
-getgenv().__IS_LOBBY = game.PlaceId ~= 11739766412
-
-getgenv().__IS_LOADED = false
 getgenv().__ORCHESTRATOR = orchestrator
 getgenv().__REMOTES = remotes
 getgenv().__UTILS = {SEND_REQUEST = sendRequest}
 getgenv().__CLIENT_INTERFACE = clientInterfaceBindings
 getgenv().__SIGNALS = signals
+getgenv().__LOBBY = lobby
+
+getgenv().__IS_LOBBY = game.PlaceId ~= 11739766412
+getgenv().__IS_LOADED = false
+getgenv().__MULTIPLAYER_ENABLED__ = false
 
 -- #endregion
 
-return {Tower = tower}
+return {Tower = tower, Lobby = lobby}
